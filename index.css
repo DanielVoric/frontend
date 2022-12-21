@@ -1,18 +1,7 @@
 body, html {
 	  height: 100%;
 	}
-	.background {
-        background: url(Slike/bar3.jpg) no-repeat center center fixed; 
-        -webkit-background-size: cover;
-        -moz-background-size: cover;
-        -o-background-size: cover;
-        background-size: cover;
-	  height: 100%;
-      overflow: hidden;
-      
-	  
-	}
-    .image {
+    .pozadina {
         
         overflow: hidden;
         background-image: url('Slike/bar3.jpg');
@@ -29,7 +18,7 @@ body, html {
 
     }
     
-    .blur {
+    .bluranje {
         background-color: gray;
         background-position: -60px 880px;
         -webkit-background-size: cover;
@@ -44,4 +33,5 @@ body, html {
         opacity: 0.8;
     }
 
+    
     

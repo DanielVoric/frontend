@@ -1,0 +1,47 @@
+body, html {
+	  height: 100%;
+	}
+	.background {
+        background: url(Slike/bar3.jpg) no-repeat center center fixed; 
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+	  height: 100%;
+      overflow: hidden;
+      
+	  
+	}
+    .image {
+        
+        overflow: hidden;
+        background-image: url('Slike/bar3.jpg');
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        height: 100%;
+        
+
+
+
+
+
+    }
+    
+    .blur {
+        background-color: gray;
+        background-position: -60px 880px;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        filter: blur(10px);
+        height: 100%;
+        width: 35%;
+        margin-left: auto;
+        margin-right: auto;
+        opacity: 0.8;
+    }
+
+    

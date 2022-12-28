@@ -26,35 +26,8 @@ body, html {
         margin-right: auto;
       }
 
-      .h1{
-        font-family: 'Courier New', Courier, monospace;
-        font-size: 30px;
-        font-weight: bold;
-       font-style: italic;
-      }
-
-    
-    .gumbić{
-      border: none;
-      cursor: pointer;
-      appearance: none;
-      background-color: inherit;
-       transition: transform .7s ease-in-out;
-      margin-left:10px;
-
-    }
-    .gumbić:hover{
-      transform: rotate(360deg);
-
-    }
-    .ikonice{
-      width: 150px;
-      height: 150px;
-      padding: 10px
-    }
-
     input.button-add {
-        background-image: url(Slike/Votka.jpg); /* 16px x 16px */
+        
         -webkit-background-size: cover;
         -moz-background-size: cover;
         -o-background-size: cover;
@@ -64,6 +37,15 @@ body, html {
         cursor: pointer;        /* make the cursor like hovering over an <a> element */
         height: 150px;           /* make this the size of your image */
         width: 150px;
-        padding-left: 16px;     /* make text start to the right of the image */
-        vertical-align: middle; /* align the text vertically centered */
     }
+
+    
+
+      .active, .button-add:hover {
+        transform: scale(1.2);
+      }
+
+
+      .inactive {
+        transform: scale(0.8);
+      }

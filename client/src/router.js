@@ -1,19 +1,25 @@
 // No need to import Vue here in Vue 3.
 import { createRouter, createWebHistory } from 'vue-router'; // Vue Router 4 syntax
-import App from './App.vue';
 import AddCocktailForm from './views/AddCocktailForm.vue';
+import Home from './views/Home.vue';
+import AllCocktails from './views/AllCocktails.vue'; // Import the new component
 
 // Define the routes
 const routes = [
   {
     path: '/',
     name: 'home',
-    component: App
+    component: Home
   },
   {
     path: '/add',
     name: 'addCocktail',
     component: AddCocktailForm
+  },
+  {
+    path: '/all-cocktails',
+    name: 'all-cocktails',
+    component: AllCocktails  // New route for listing all cocktails
   }
 ];
 

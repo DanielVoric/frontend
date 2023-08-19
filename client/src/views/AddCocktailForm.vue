@@ -1,40 +1,40 @@
-<!--Forma-->>
+<!--Forma-->
 <template>
-    <div>
-      <h1>Add a New Cocktail</h1>
-      <form @submit.prevent="submitCocktailForm">
-        <label for="name">Cocktail Name:</label>
-        <input type="text" v-model="name" id="name" required />
-  
-        <!--Alkohol  -->
-        <h2>Alcohol:</h2>
-        <div v-for="(alc, index) in alcohols" :key="index">
-          <input type="text" v-model="alc.value" />
-          <button @click.prevent="removeAlcohol(index)">Remove</button>
-        </div>
-        <button @click.prevent="addAlcohol">Add Another Alcohol</button>
-  
-        <!--Juice -->
-        <h2>Juice:</h2>
-        <div v-for="(ju, index) in juices" :key="index">
-          <input type="text" v-model="ju.value" />
-          <button @click.prevent="removeJuice(index)">Remove</button>
-        </div>
-        <button @click.prevent="addJuice">Add Another Juice</button>
-  
-        <!--Other -->
-        <h2>Other:</h2>
-        <div v-for="(ot, index) in others" :key="index">
-          <input type="text" v-model="ot.value" />
-          <button @click.prevent="removeOther(index)">Remove</button>
-        </div>
-        <button @click.prevent="addOther">Add Another Other Ingredient</button>
-  
-        <button type="submit">Submit</button>
-      </form>
-    </div>
-  </template>
-  
+  <div class="container mt-4">
+    <h1>Add a New Cocktail</h1>
+    <form @submit.prevent="submitCocktailForm" class="mt-3">
+      <label for="name" class="form-label">Cocktail Name:</label>
+      <input type="text" v-model="name" id="name" class="form-control" required />
+
+      <!--Alcohol  -->
+      <h2>Alcohol:</h2>
+      <div v-for="(alc, index) in alcohols" :key="index" class="mb-2">
+        <input type="text" v-model="alc.value" class="form-control" />
+        <button @click.prevent="removeAlcohol(index)" class="btn btn-danger mt-1">Remove</button>
+      </div>
+      <button @click.prevent="addAlcohol" class="btn btn-info">Add Another Alcohol</button>
+
+      <!--Juice -->
+      <h2>Juice:</h2>
+      <div v-for="(ju, index) in juices" :key="index" class="mb-2">
+        <input type="text" v-model="ju.value" class="form-control" />
+        <button @click.prevent="removeJuice(index)" class="btn btn-danger mt-1">Remove</button>
+      </div>
+      <button @click.prevent="addJuice" class="btn btn-info">Add Another Juice</button>
+
+      <!--Other -->
+      <h2>Other:</h2>
+      <div v-for="(ot, index) in others" :key="index" class="mb-2">
+        <input type="text" v-model="ot.value" class="form-control" />
+        <button @click.prevent="removeOther(index)" class="btn btn-danger mt-1">Remove</button>
+      </div>
+      <button @click.prevent="addOther" class="btn btn-info">Add Another Other Ingredient</button>
+
+      <button type="submit" class="btn btn-success mt-3">Submit</button>
+    </form>
+  </div>
+</template>
+
   <script>
   import axios from 'axios';
   

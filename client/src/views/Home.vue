@@ -29,7 +29,7 @@ import axios from "axios";
 import CocktailList from "@/components/CocktailList.vue";
 
 export default {
-  name: 'HomePage',  // This is the name property you need to add
+  name: 'HomePage',
 
   components: {
     CocktailList

@@ -4,10 +4,6 @@
       <div class="card-header">
         {{ cocktail.name }}
         
-        <span @click="toggleFavorite(cocktail)">
-            <i :class="cocktail.isFavorite ? 'fas fa-star gold' : 'far fa-star black'"></i>
-        </span>
-        
         <!-- Pokazi "Are you sure?" samo ako se pretisne delete -->
         <template v-if="cocktailToDelete === cocktail._id">
           <button
@@ -72,16 +68,6 @@ export default {
     };
   },
   methods: {
-    async toggleFavorite(cocktail) {
-      try {
-        const response = await axios.put(`http://localhost:5000/cocktails/toggle-favorite/${cocktail._id}`);
-        if (response.status === 200) {
-          cocktail.isFavorite = !cocktail.isFavorite;
-        }
-      } catch (error) {
-        console.error("Error updating favorite status:", error);
-      }
-    },
     prepareToDelete(cocktailId) {
       this.cocktailToDelete = cocktailId;
     },
@@ -93,7 +79,7 @@ export default {
         await axios.delete(`http://localhost:5000/cocktails/${cocktailId}`);
         this.$emit("delete", cocktailId);
         this.cocktailToDelete = null;
-        window.location.reload();
+        //window.location.reload();
       } catch (error) {
         console.error("Error deleting cocktail:", error);
         alert("Failed to delete cocktail. Please check the console for more details.");
@@ -102,13 +88,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-.gold {
-    color: gold;
-}
-
-.black {
-    color: black;
-}
-</style>

@@ -83,15 +83,16 @@ export default {
     },
 
     async fetchAllIngredients() {
-      try {
-        const response = await axios.get("http://localhost:5000/cocktails/ingredients");
-        this.allAlcohols = response.data.alcohol;
-        this.allJuices = response.data.juice;
-        this.allOthers = response.data.other;
-      } catch (error) {
-        console.error("Error fetching ingredients:", error);
-      }
-    },
+  try {
+    const response = await axios.get("http://localhost:5000/cocktails/ingredients");
+    this.allAlcohols = response.data.alcohol.sort();
+    this.allJuices = response.data.juice.sort();
+    this.allOthers = response.data.other.sort();
+  } catch (error) {
+    console.error("Error fetching ingredients:", error);
+  }
+},
+  //"refresha" kada pretisnem delete na filteru
     handleCocktailDelete(cocktailId) {
         this.cocktails = this.cocktails.filter(cocktail => cocktail._id !== cocktailId);
     }   

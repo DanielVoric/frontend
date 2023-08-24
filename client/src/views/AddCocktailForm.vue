@@ -67,24 +67,25 @@
         this.others.splice(index, 1);
       },
       async submitCocktailForm() {
-        try {
-          const response = await axios.post('http://localhost:5000/cocktails', {
-            name: this.name,
-            ingredients: {
-              alcohol: this.alcohols.map(a => a.value),
-              juice: this.juices.map(j => j.value),
-              other: this.others.map(o => o.value)
-            }
-          });
-  
-          if (response.status === 201) {
-            alert('Cocktail added successfully!');
-            this.$router.push('/');
-          }
-        } catch (error) {
-          alert('Failed to add the cocktail. Please try again.');
-        }
+  try {
+    const response = await axios.post('http://localhost:5000/cocktails', {
+      name: this.name,
+      ingredients: {
+        alcohol: this.alcohols.map(a => a.value).filter(Boolean),
+        juice: this.juices.map(j => j.value).filter(Boolean),
+        other: this.others.map(o => o.value).filter(Boolean)
       }
+    });
+
+    if (response.status === 201) {
+      alert('Cocktail added successfully!');
+      this.$router.push('/');
+    }
+  } catch (error) {
+    alert('Failed to add the cocktail. Please try again.');
+  }
+}
+
     }
   };
   </script>

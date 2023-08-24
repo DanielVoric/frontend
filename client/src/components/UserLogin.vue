@@ -25,23 +25,22 @@ export default {
     };
   },
   methods: {
-  async handleLogin() {
-    try {
-      const response = await axios.post('http://localhost:5000/auth/login', {
-        username: this.username,
-        password: this.password
-      });
+    async handleLogin() {
+      try {
+          const response = await axios.post('http://localhost:5000/auth/login', {
+              username: this.username,
+              password: this.password
+          });
 
-// cuvanje tokena za kasnije
-      localStorage.setItem('token', response.data.token); 
-      this.$router.push('/').then(() => {
-        window.location.reload();
-      });
-    } catch (error) {
-      console.error('Login failed:', error.response ? error.response.data : error.message);
+          localStorage.setItem('token', response.data.token); 
+          this.$router.push('/').then(() => {
+              window.location.reload();
+          });
+      } catch (error) {
+          console.error('Login failed:', error.response ? error.response.data.message : error.message);
+          alert(error.response ? error.response.data.message : 'Login failed.');
+      }
     }
   }
-}
-,
 };
 </script>

@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router'; 
+import { createRouter, createWebHistory } from 'vue-router';
 import AddCocktailForm from './views/AddCocktailForm.vue';
 import Home from './views/Home.vue';
 import AllCocktails from './views/AllCocktails.vue';
@@ -32,7 +32,7 @@ const routes = [
     name: 'Register',
     component: UserRegistration
   }
-  
+
 ];
 
 const router = createRouter({

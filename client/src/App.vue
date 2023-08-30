@@ -1,23 +1,52 @@
 <template>
   <div id="app">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <!-- kad nisam logged in -->
-      <div class="navbar-nav mr-auto">
-        <div v-if="!isAuthenticated">
-          <router-link to="/login" class="nav-item nav-link">Login</router-link>
-          <router-link to="/register" class="nav-item nav-link">Register</router-link>
+    <!-- Renderaj navbar osim za /register i /login -->
+    <div v-if="$route.path !== '/register' && $route.path !== '/login'">
+      <nav
+        class="navbar navbar-expand-lg navbar-dark fixed-top"
+        style="background-color: brown"
+      >
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Koktelomat</a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarCollapse"
+            aria-controls="navbarCollapse"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div
+            class="collapse navbar-collapse justify-content-between"
+            id="navbarCollapse"
+          >
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <router-link to="/" class="nav-link">Home</router-link>
+              </li>
+              <li class="nav-item">
+                <router-link to="/add" class="nav-link"
+                  >Add Cocktail</router-link
+                >
+              </li>
+              <li class="nav-item">
+                <router-link to="/all-cocktails" class="nav-link"
+                  >List All Cocktails</router-link
+                >
+              </li>
+            </ul>
+            <div v-if="isAuthenticated">
+              <button class="nav-item nav-link btn btn-danger" @click="logout">
+                Logout
+              </button>
+            </div>
+          </div>
         </div>
-        <div v-else>
-          <!-- kad sam logged in -->
-          <router-link to="/" class="nav-item nav-link">Home</router-link>
-          <router-link to="/add" class="nav-item nav-link">Add Cocktail</router-link>
-          <router-link to="/all-cocktails" class="btn btn-link nav-item nav-link">List All Cocktails</router-link>
-        </div>
-      </div>
-      <div v-if="isAuthenticated" class="navbar-nav">
-        <button class="nav-item nav-link btn btn-danger" @click="logout">Logout</button>
-      </div>
-    </nav>
+      </nav>
+    </div>
     <router-view></router-view>
   </div>
 </template>
@@ -26,22 +55,21 @@
 export default {
   computed: {
     isAuthenticated() {
-      return !!localStorage.getItem('token');
-    }
+      return !!localStorage.getItem("token");
+    },
   },
   watch: {
     $route() {
       this.$forceUpdate();
-    }
+    },
   },
   methods: {
     logout() {
-      localStorage.removeItem('token');
-      this.$router.push('/login').then(() => {
+      localStorage.removeItem("token");
+      this.$router.push("/login").then(() => {
         window.location.reload();
       });
-    }
-}
-
+    },
+  },
 };
 </script>

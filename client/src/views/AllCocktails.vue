@@ -1,7 +1,11 @@
 <template>
   <div>
     <h1>All Cocktails</h1>
-    <CocktailList :cocktails="cocktails" v-if="cocktails.length" @delete="handleCocktailDelete" />
+    <CocktailList
+      :cocktails="cocktails"
+      v-if="cocktails.length"
+      @delete="handleCocktailDelete"
+    />
     <p v-else>No cocktails available.</p>
   </div>
 </template>
@@ -11,13 +15,13 @@ import axios from "axios";
 import CocktailList from "@/components/CocktailList.vue";
 
 export default {
-  name: 'AllCocktails',
+  name: "AllCocktails",
   components: {
-    CocktailList
+    CocktailList,
   },
   data() {
     return {
-      cocktails: []
+      cocktails: [],
     };
   },
   created() {
@@ -32,10 +36,12 @@ export default {
         console.error("Error fetching all cocktails:", error);
       }
     },
-    
+
     handleCocktailDelete(cocktailId) {
-      this.cocktails = this.cocktails.filter(cocktail => cocktail._id !== cocktailId);
-    }
-  }
+      this.cocktails = this.cocktails.filter(
+        (cocktail) => cocktail._id !== cocktailId
+      );
+    },
+  },
 };
 </script>

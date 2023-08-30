@@ -1,64 +1,69 @@
 <template>
   <div class="mt-4">
-    <div v-for="cocktail in sortedCocktails" :key="cocktail._id" class="card mb-3">
-      <div class="card-header">
-        {{ cocktail.name }}
-        <button
-          class="btn btn-sm float-right ml-2"
-          :class="cocktail.isFavorited ? 'btn-warning' : 'btn-secondary'"
-          @click="toggleFavorite(cocktail._id, cocktail.isFavorited)"
-        >
-          ⭐
-        </button>
-
-        <template v-if="cocktailToDelete === cocktail._id">
+    <div
+      v-for="cocktail in sortedCocktails"
+      :key="cocktail._id"
+      class="card mb-3"
+    >
+      <div class="card-header cocktail-form">
+        <div class="matched-cocktail-name">
+          {{ cocktail.name }}
           <button
-            class="btn btn-warning btn-sm float-right ml-2"
-            @click="confirmDelete(cocktail._id)"
+            class="btn btn-sm float-right ml-2"
+            :class="cocktail.isFavorited ? 'btn-warning' : 'btn-secondary'"
+            @click="toggleFavorite(cocktail._id, cocktail.isFavorited)"
           >
-            Yes
+            ⭐
           </button>
+
+          <template v-if="cocktailToDelete === cocktail._id">
+            <button
+              class="btn btn-warning btn-sm float-right ml-2"
+              @click="confirmDelete(cocktail._id)"
+            >
+              Yes
+            </button>
+            <button
+              class="btn btn-secondary btn-sm float-right"
+              @click="cancelDelete"
+            >
+              No
+            </button>
+            <span class="float-right">Are you sure?&nbsp;</span>
+          </template>
+
           <button
-            class="btn btn-secondary btn-sm float-right"
-            @click="cancelDelete"
+            v-else-if="cocktail.isDeletable"
+            class="btn btn-danger btn-sm float-right ml-2"
+            @click="prepareToDelete(cocktail._id)"
           >
-            No
+            Delete
           </button>
-          <span class="float-right">Are you sure?&nbsp;</span>
-        </template>
-
-        <button
-          v-else-if="cocktail.isDeletable"
-          class="btn btn-danger btn-sm float-right ml-2"
-          @click="prepareToDelete(cocktail._id)"
-        >
-          Delete
-        </button>
-
+        </div>
+        <ul class="list-group list-group-flush">
+          <li
+            v-for="ingredient in cocktail.ingredients.alcohol"
+            :key="ingredient"
+            class="list-group-item matched-ingredient alcohol"
+          >
+            {{ ingredient }}
+          </li>
+          <li
+            v-for="ingredient in cocktail.ingredients.juice"
+            :key="ingredient"
+            class="list-group-item matched-ingredient juice"
+          >
+            {{ ingredient }}
+          </li>
+          <li
+            v-for="ingredient in cocktail.ingredients.other"
+            :key="ingredient"
+            class="list-group-item matched-ingredient other"
+          >
+            {{ ingredient }}
+          </li>
+        </ul>
       </div>
-      <ul class="list-group list-group-flush">
-        <li
-          v-for="ingredient in cocktail.ingredients.alcohol"
-          :key="ingredient"
-          class="list-group-item"
-        >
-          {{ ingredient }}
-        </li>
-        <li
-          v-for="ingredient in cocktail.ingredients.juice"
-          :key="ingredient"
-          class="list-group-item"
-        >
-          {{ ingredient }}
-        </li>
-        <li
-          v-for="ingredient in cocktail.ingredients.other"
-          :key="ingredient"
-          class="list-group-item"
-        >
-          {{ ingredient }}
-        </li>
-      </ul>
     </div>
   </div>
 </template>
@@ -76,9 +81,11 @@ export default {
   },
   computed: {
     sortedCocktails() {
-      return [...this.localCocktails].sort((a, b) => b.isFavorited - a.isFavorited);
+      return [...this.localCocktails].sort(
+        (a, b) => b.isFavorited - a.isFavorited
+      );
     },
-},
+  },
   created() {
     this.fetchUserFavorites();
   },
@@ -129,11 +136,12 @@ export default {
           }
         );
         if (response.status === 200) {
-          const cocktail = this.localCocktails.find(c => c._id === cocktailId);
-cocktail.isFavorited = !isFavorited;
-
+          const cocktail = this.localCocktails.find(
+            (c) => c._id === cocktailId
+          );
+          cocktail.isFavorited = !isFavorited;
         } else {
-          throw new Error('Failed to toggle favorite');
+          throw new Error("Failed to toggle favorite");
         }
       } catch (error) {
         console.error("Error toggling favorite:", error);
@@ -160,3 +168,30 @@ cocktail.isFavorited = !isFavorited;
   },
 };
 </script>
+
+<style scoped>
+.matched-ingredient {
+  color: black;
+}
+.matched-ingredient.alcohol {
+  border: 1.5px solid black;
+  background-color: lightblue;
+}
+.matched-ingredient.juice {
+  background-color: pink;
+  border: 1.5px solid black;
+}
+.matched-ingredient.other {
+  background-color: lightyellow;
+  border: 1.5px solid black;
+}
+
+.matched-cocktail-name {
+  font-weight: bold;
+  font-size: medium;
+}
+.cocktail-form {
+  background-color: rgba(70, 73, 73, 0.8);
+  backdrop-filter: blur();
+}
+</style>

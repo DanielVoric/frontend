@@ -1,12 +1,16 @@
 <template>
-  <div>
-    <h1>All Cocktails</h1>
-    <CocktailList
-      :cocktails="cocktails"
-      v-if="cocktails.length"
-      @delete="handleCocktailDelete"
-    />
-    <p v-else>No cocktails available.</p>
+  <div class="container2">
+    <div class="blurry-box2">
+      <h1 class="title2">All Cocktails</h1>
+      <div class="cocktail-list-container2">
+        <CocktailList
+          :cocktails="cocktails"
+          v-if="cocktails.length"
+          @delete="handleCocktailDelete"
+        />
+        <p v-else>No cocktails available.</p>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -45,3 +49,7 @@ export default {
   },
 };
 </script>
+
+<style>
+
+</style>

@@ -1,58 +1,92 @@
 <!--Forma-->
 <template>
-  <div class="container mt-4">
-    <h1>Add a New Cocktail</h1>
-    <form @submit.prevent="submitCocktailForm" class="mt-3">
-      <label for="name" class="form-label">Cocktail Name:</label>
-      <input
-        type="text"
-        v-model="name"
-        id="name"
-        class="form-control"
-        required
-      />
+  <div id="addCocktailPage" class="container1 mt-41">
+    <div class="blurry-box1">
+      <h1 class="title2">Add a New Custom Cocktail</h1>
+      <form @submit.prevent="submitCocktailForm" class="mt-3">
+        <label for="name" class="form-label">Cocktail Name:</label>
+        <input
+          type="text"
+          v-model="name"
+          id="name"
+          class="form-control cocktail-name-input1"
+          required
+        />
 
-      <!--Alcohol  -->
-      <h2>Alcohol:</h2>
-      <div v-for="(alc, index) in alcohols" :key="index" class="mb-2">
-        <input type="text" v-model="alc.value" class="form-control" />
-        <button
-          @click.prevent="removeAlcohol(index)"
-          class="btn btn-danger mt-1"
+        <!--Alcohol -->
+        <h2>Alcohol:</h2>
+        <div
+          v-for="(alc, index) in alcohols"
+          :key="index"
+          class="input-group1 mb-2"
         >
-          Remove
+          <input
+            type="text"
+            v-model="alc.value"
+            class="form-control alcohol-input1"
+          />
+          <button
+            @click.prevent="removeAlcohol(index)"
+            class="btn btn-danger input-group-append1"
+          >
+            Remove
+          </button>
+        </div>
+        <button @click.prevent="addAlcohol" class="btn btn-info1">
+          Add another Alcohol
         </button>
-      </div>
-      <button @click.prevent="addAlcohol" class="btn btn-info">
-        Add Another Alcohol
-      </button>
 
-      <!--Juice -->
-      <h2>Juice:</h2>
-      <div v-for="(ju, index) in juices" :key="index" class="mb-2">
-        <input type="text" v-model="ju.value" class="form-control" />
-        <button @click.prevent="removeJuice(index)" class="btn btn-danger mt-1">
-          Remove
+        <!--Juice -->
+        <h2>Juice:</h2>
+        <div
+          v-for="(ju, index) in juices"
+          :key="index"
+          class="input-group1 mb-2"
+        >
+          <input
+            type="text"
+            v-model="ju.value"
+            class="form-control juice-input1"
+          />
+          <button
+            @click.prevent="removeJuice(index)"
+            class="btn btn-danger input-group-append1"
+          >
+            Remove
+          </button>
+        </div>
+        <button @click.prevent="addJuice" class="btn btn-pink1">
+          Add another Juice
         </button>
-      </div>
-      <button @click.prevent="addJuice" class="btn btn-info">
-        Add Another Juice
-      </button>
 
-      <!--Other -->
-      <h2>Other:</h2>
-      <div v-for="(ot, index) in others" :key="index" class="mb-2">
-        <input type="text" v-model="ot.value" class="form-control" />
-        <button @click.prevent="removeOther(index)" class="btn btn-danger mt-1">
-          Remove
+        <!--Other -->
+        <h2>Other:</h2>
+        <div
+          v-for="(ot, index) in others"
+          :key="index"
+          class="input-group1 mb-2"
+        >
+          <input
+            type="text"
+            v-model="ot.value"
+            class="form-control other-input1"
+          />
+          <button
+            @click.prevent="removeOther(index)"
+            class="btn btn-danger input-group-append1"
+          >
+            Remove
+          </button>
+        </div>
+        <button @click.prevent="addOther" class="btn btn-lightyellow1">
+          Add another Other ingredient
         </button>
-      </div>
-      <button @click.prevent="addOther" class="btn btn-info">
-        Add Another Other Ingredient
-      </button>
 
-      <button type="submit" class="btn btn-success mt-3">Submit</button>
-    </form>
+        <button type="submit" class="btn btn-success mt-3 submit-button1">
+          Finish adding custom Cocktail
+        </button>
+      </form>
+    </div>
   </div>
 </template>
 
@@ -109,3 +143,6 @@ export default {
   },
 };
 </script>
+<style scoped>
+
+</style>

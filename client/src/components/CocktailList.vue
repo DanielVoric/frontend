@@ -5,41 +5,57 @@
       :key="cocktail._id"
       class="card mb-3"
     >
-      <div class="card-header cocktail-form">
+      <div class="card-header cocktail-form1">
         <div class="matched-cocktail-name">
           {{ cocktail.name }}
-          <button
-            class="btn btn-sm float-right ml-2"
-            :class="cocktail.isFavorited ? 'btn-warning' : 'btn-secondary'"
-            @click="toggleFavorite(cocktail._id, cocktail.isFavorited)"
-          >
-            ⭐
-          </button>
+        </div>
 
+        <div class="button-container float-right">
           <template v-if="cocktailToDelete === cocktail._id">
             <button
-              class="btn btn-warning btn-sm float-right ml-2"
+              class="btn btn-warning btn-sm ml-2 confirm-delete-yes"
               @click="confirmDelete(cocktail._id)"
             >
               Yes
             </button>
             <button
-              class="btn btn-secondary btn-sm float-right"
+              class="btn btn-secondary btn-sm confirm-delete-no"
               @click="cancelDelete"
             >
               No
             </button>
-            <span class="float-right">Are you sure?&nbsp;</span>
+            <span class="confirm-delete-text">Are you sure?&nbsp;</span>
           </template>
-
           <button
             v-else-if="cocktail.isDeletable"
-            class="btn btn-danger btn-sm float-right ml-2"
+            class="btn btn-danger btn-sm ml-2 delete-button"
             @click="prepareToDelete(cocktail._id)"
           >
             Delete
           </button>
+
+          <label
+            v-if="cocktail.isFavorited"
+            class="custom-checkbox ml-2 favorite-container"
+            @click="toggleFavorite(cocktail._id, cocktail.isFavorited)"
+          >
+            <input type="checkbox" checked />
+            <i class="glyphicon glyphicon-star-empty favorite-star-icon"></i>
+            <i class="glyphicon glyphicon-star favorite-star-icon"></i>
+            <span class="favorite-text">Favorite</span>
+          </label>
+          <label
+            v-else
+            class="custom-checkbox ml-2 favorite-container"
+            @click="toggleFavorite(cocktail._id, cocktail.isFavorited)"
+          >
+            <input type="checkbox" />
+            <i class="glyphicon glyphicon-star-empty favorite-star-icon"></i>
+            <i class="glyphicon glyphicon-star favorite-star-icon"></i>
+            <span class="favorite-text">Favorite</span>
+          </label>
         </div>
+        
         <ul class="list-group list-group-flush">
           <li
             v-for="ingredient in cocktail.ingredients.alcohol"
@@ -169,29 +185,6 @@ export default {
 };
 </script>
 
-<style scoped>
-.matched-ingredient {
-  color: black;
-}
-.matched-ingredient.alcohol {
-  border: 1.5px solid black;
-  background-color: lightblue;
-}
-.matched-ingredient.juice {
-  background-color: pink;
-  border: 1.5px solid black;
-}
-.matched-ingredient.other {
-  background-color: lightyellow;
-  border: 1.5px solid black;
-}
+<style >
 
-.matched-cocktail-name {
-  font-weight: bold;
-  font-size: medium;
-}
-.cocktail-form {
-  background-color: rgba(70, 73, 73, 0.8);
-  backdrop-filter: blur();
-}
 </style>

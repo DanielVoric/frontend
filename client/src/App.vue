@@ -1,13 +1,13 @@
 <template>
   <div id="app">
-    <!-- Renderaj navbar osim za /register i /login -->
+    <!-- Renderaj navbar, osim za /register i /login -->
     <div v-if="$route.path !== '/register' && $route.path !== '/login'">
       <nav
         class="navbar navbar-expand-lg navbar-dark fixed-top"
         style="background-color: brown"
       >
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">Koktelomat</a>
+          <router-link to="/" class="navbar-brand">Koktelomat</router-link>
           <button
             class="navbar-toggler"
             type="button"
@@ -28,17 +28,14 @@
                 <router-link to="/" class="nav-link">Home</router-link>
               </li>
               <li class="nav-item">
-                <router-link to="/add" class="nav-link"
-                  >Add Cocktail</router-link
-                >
+                <router-link to="/add" class="nav-link">Add Cocktail</router-link>
               </li>
               <li class="nav-item">
-                <router-link to="/all-cocktails" class="nav-link"
-                  >List All Cocktails</router-link
-                >
+                <router-link to="/all-cocktails" class="nav-link">List All Cocktails</router-link>
               </li>
             </ul>
-            <div v-if="isAuthenticated">
+            <div v-if="isAuthenticated" class="d-flex align-items-center">
+              <span class="navbar-text mr-2">Logged in as: {{ username }}</span> 
               <button class="nav-item nav-link btn btn-danger" @click="logout">
                 Logout
               </button>
@@ -57,6 +54,9 @@ export default {
     isAuthenticated() {
       return !!localStorage.getItem("token");
     },
+    username() {
+      return localStorage.getItem("username");
+    },
   },
   watch: {
     $route() {
@@ -66,6 +66,7 @@ export default {
   methods: {
     logout() {
       localStorage.removeItem("token");
+      localStorage.removeItem("username");
       this.$router.push("/login").then(() => {
         window.location.reload();
       });

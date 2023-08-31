@@ -54,15 +54,16 @@ export default {
   },
   methods: {
     async handleLogin() {
-      try {
-        const response = await axios.post("http://localhost:5000/auth/login", {
-          username: this.username,
-          password: this.password,
-        });
-        localStorage.setItem("token", response.data.token);
-        this.$router.push("/").then(() => {
-          window.location.reload();
-        });
+  try {
+    const response = await axios.post("http://localhost:5000/auth/login", {
+      username: this.username,
+      password: this.password,
+    });
+    localStorage.setItem("token", response.data.token);
+    localStorage.setItem("username", this.username);
+    this.$router.push("/").then(() => {
+      window.location.reload();
+    });
       } catch (error) {
         console.error(
           "Login failed:",

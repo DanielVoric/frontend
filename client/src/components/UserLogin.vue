@@ -55,7 +55,7 @@ export default {
   methods: {
     async handleLogin() {
       try {
-        const response = await axios.post("http://localhost:5000/auth/login", {
+        const response = await axios.post("http://https://koktelomat.onrender.com/auth/login", {
           username: this.username,
           password: this.password,
         });

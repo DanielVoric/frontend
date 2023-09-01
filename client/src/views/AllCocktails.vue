@@ -34,7 +34,7 @@ export default {
   methods: {
     async fetchAllCocktails() {
       try {
-        const response = await axios.get("http://localhost:5000/cocktails");
+        const response = await axios.get("http://https://koktelomat.onrender.com/cocktails");
         this.cocktails = response.data;
       } catch (error) {
         console.error("Error fetching all cocktails:", error);

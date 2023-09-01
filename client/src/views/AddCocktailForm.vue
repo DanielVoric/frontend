@@ -123,7 +123,7 @@ export default {
     },
     async submitCocktailForm() {
       try {
-        const response = await axios.post("http://localhost:5000/cocktails", {
+        const response = await axios.post("http://https://koktelomat.onrender.com/cocktails", {
           name: this.name,
           ingredients: {
             alcohol: this.alcohols.map((a) => a.value).filter(Boolean),

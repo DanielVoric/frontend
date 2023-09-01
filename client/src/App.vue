@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <!-- Renderaj navbar osim /register i /login -->
+    <!-- renderaj navbar samo na /register i /login -->
     <div v-if="$route.path !== '/register' && $route.path !== '/login'">
       <nav
         class="navbar navbar-expand-lg navbar-dark fixed-top"
@@ -28,21 +28,25 @@
                 <router-link to="/" class="nav-link">Home</router-link>
               </li>
               <li class="nav-item">
-                <router-link to="/add" class="nav-link"
-                  >Add Cocktail</router-link
-                >
+                <router-link to="/add" class="nav-link">Add Cocktail</router-link>
               </li>
               <li class="nav-item">
-                <router-link to="/all-cocktails" class="nav-link"
-                  >List All Cocktails</router-link
-                >
+                <router-link to="/all-cocktails" class="nav-link">List All Cocktails</router-link>
               </li>
             </ul>
+
             <div v-if="isAuthenticated" class="d-flex align-items-center">
               <span class="navbar-text mr-2">Logged in as: {{ username }}</span>
               <button class="nav-item nav-link btn btn-danger" @click="logout">
                 Logout
               </button>
+            </div>
+
+            <!-- If user is not authenticated -->
+            <div v-else class="d-flex align-items-center">
+              <router-link to="/login" class="nav-item nav-link btn btn-success">
+                Login
+              </router-link>
             </div>
           </div>
         </div>
@@ -54,6 +58,7 @@
     </footer>
   </div>
 </template>
+
 <script>
 export default {
   computed: {
@@ -80,6 +85,7 @@ export default {
   },
 };
 </script>
+
 <style>
 .app-footer {
   position: fixed;

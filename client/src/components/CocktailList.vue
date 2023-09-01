@@ -96,12 +96,16 @@ export default {
     };
   },
   computed: {
-    sortedCocktails() {
-      return [...this.localCocktails].sort(
-        (a, b) => b.isFavorited - a.isFavorited
-      );
-    },
+  sortedCocktails() {
+    return [...this.localCocktails].sort((a, b) => {
+      if (a.isFavorited && !b.isFavorited) return -1;
+      if (!a.isFavorited && b.isFavorited) return 1;
+      
+      return a.name.localeCompare(b.name);
+    });
   },
+},
+
   created() {
     this.fetchUserFavorites();
   },
@@ -118,7 +122,7 @@ export default {
       try {
         const token = localStorage.getItem("authToken");
         const response = await axios.get(
-          "http://localhost:5000/cocktails/favorites",
+          "http://https://koktelomat.onrender.com/cocktails/favorites",
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -141,7 +145,7 @@ export default {
       try {
         const token = localStorage.getItem("authToken");
         const response = await axios.put(
-          `http://localhost:5000/cocktails/${cocktailId}/favorite`,
+          `http://https://koktelomat.onrender.com/cocktails/${cocktailId}/favorite`,
           {
             isFavorited: !isFavorited,
           },
@@ -171,7 +175,7 @@ export default {
     },
     async confirmDelete(cocktailId) {
       try {
-        await axios.delete(`http://localhost:5000/cocktails/${cocktailId}`);
+        await axios.delete(`http://https://koktelomat.onrender.com/cocktails/${cocktailId}`);
         this.$emit("delete", cocktailId);
         this.cocktailToDelete = null;
       } catch (error) {

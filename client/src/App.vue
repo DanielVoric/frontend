@@ -44,6 +44,11 @@
                 Logout
               </button>
             </div>
+            <div v-else class="d-flex align-items-center">
+              <router-link to="/login" class="nav-item nav-link btn btn-primary"
+                >Login</router-link
+              >
+            </div>
           </div>
         </div>
       </nav>
@@ -54,6 +59,7 @@
     </footer>
   </div>
 </template>
+
 <script>
 export default {
   computed: {

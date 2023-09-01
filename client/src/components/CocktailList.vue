@@ -96,12 +96,16 @@ export default {
     };
   },
   computed: {
-    sortedCocktails() {
-      return [...this.localCocktails].sort(
-        (a, b) => b.isFavorited - a.isFavorited
-      );
-    },
+  sortedCocktails() {
+    return [...this.localCocktails].sort((a, b) => {
+      if (a.isFavorited && !b.isFavorited) return -1;
+      if (!a.isFavorited && b.isFavorited) return 1;
+      
+      return a.name.localeCompare(b.name);
+    });
   },
+},
+
   created() {
     this.fetchUserFavorites();
   },

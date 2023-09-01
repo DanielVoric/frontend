@@ -55,7 +55,7 @@
             <span class="favorite-text">Favorite</span>
           </label>
         </div>
-        
+
         <ul class="list-group list-group-flush">
           <li
             v-for="ingredient in cocktail.ingredients.alcohol"
@@ -185,6 +185,4 @@ export default {
 };
 </script>
 
-<style >
-
-</style>
+<style></style>

@@ -4,7 +4,9 @@
       <div class="main-container">
         <div class="left-container">
           <h1 class="title">Select ingredients You have to make cocktails:</h1>
-          <div class="blurred-box alcohol scrollable-box cocktail-list-container2">
+          <div
+            class="blurred-box alcohol scrollable-box cocktail-list-container2"
+          >
             <h2 class="title3">Alcohol:</h2>
             <div v-for="alcohol in allAlcohols" :key="alcohol">
               <input
@@ -14,7 +16,9 @@
               />{{ alcohol }}<br />
             </div>
           </div>
-          <div class="blurred-box juice scrollable-box cocktail-list-container2">
+          <div
+            class="blurred-box juice scrollable-box cocktail-list-container2"
+          >
             <h2 class="title3">Juices:</h2>
             <div v-for="juice in allJuices" :key="juice">
               <input type="checkbox" v-model="selectedJuice" :value="juice" />{{
@@ -22,7 +26,9 @@
               }}<br />
             </div>
           </div>
-          <div class="blurred-box other scrollable-box cocktail-list-container2">
+          <div
+            class="blurred-box other scrollable-box cocktail-list-container2"
+          >
             <h2 class="title3">Other:</h2>
             <div v-for="other in allOthers" :key="other">
               <input type="checkbox" v-model="selectedOther" :value="other" />{{
@@ -33,7 +39,7 @@
         </div>
 
         <button
-          class="btn  find-cocktails-button custom-button"
+          class="btn find-cocktails-button custom-button"
           @click="searchCocktails"
         >
           <div class="arrow-lines">></div>
@@ -43,11 +49,13 @@
           <div class="arrow-lines">></div>
         </button>
 
-        <div class="right-container ">
+        <div class="right-container">
           <h1 class="title">
             Possible cocktails with the selected ingredients:
           </h1>
-          <div class="blurred-box cocktails scrollable-box cocktail-list-container2">
+          <div
+            class="blurred-box cocktails scrollable-box cocktail-list-container2"
+          >
             <CocktailList
               :cocktails="cocktails"
               v-if="cocktails.length"
@@ -148,6 +156,4 @@ export default {
   },
 };
 </script>
-<style>
-
-</style>
+<style></style>

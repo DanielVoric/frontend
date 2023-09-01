@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <!-- Renderaj navbar, osim za /register i /login -->
+    <!-- Renderaj navbar osim /register i /login -->
     <div v-if="$route.path !== '/register' && $route.path !== '/login'">
       <nav
         class="navbar navbar-expand-lg navbar-dark fixed-top"
@@ -28,14 +28,18 @@
                 <router-link to="/" class="nav-link">Home</router-link>
               </li>
               <li class="nav-item">
-                <router-link to="/add" class="nav-link">Add Cocktail</router-link>
+                <router-link to="/add" class="nav-link"
+                  >Add Cocktail</router-link
+                >
               </li>
               <li class="nav-item">
-                <router-link to="/all-cocktails" class="nav-link">List All Cocktails</router-link>
+                <router-link to="/all-cocktails" class="nav-link"
+                  >List All Cocktails</router-link
+                >
               </li>
             </ul>
             <div v-if="isAuthenticated" class="d-flex align-items-center">
-              <span class="navbar-text mr-2">Logged in as: {{ username }}</span> 
+              <span class="navbar-text mr-2">Logged in as: {{ username }}</span>
               <button class="nav-item nav-link btn btn-danger" @click="logout">
                 Logout
               </button>
@@ -45,9 +49,11 @@
       </nav>
     </div>
     <router-view></router-view>
+    <footer class="app-footer">
+      <p>Created by Daniel Vorić, contact: dvoric@student.unipu.hr</p>
+    </footer>
   </div>
 </template>
-
 <script>
 export default {
   computed: {
@@ -74,3 +80,16 @@ export default {
   },
 };
 </script>
+<style>
+.app-footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  background-color: none;
+  color: darkslategrey;
+  font-size: 12px;
+  padding: 5px;
+}
+</style>

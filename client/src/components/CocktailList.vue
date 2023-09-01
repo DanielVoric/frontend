@@ -118,7 +118,7 @@ export default {
       try {
         const token = localStorage.getItem("authToken");
         const response = await axios.get(
-          "http://localhost:5000/cocktails/favorites",
+          "https://koktelomat.onrender.com/cocktails/favorites",
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -141,7 +141,7 @@ export default {
       try {
         const token = localStorage.getItem("authToken");
         const response = await axios.put(
-          `http://localhost:5000/cocktails/${cocktailId}/favorite`,
+          `https://koktelomat.onrender.com/cocktails/${cocktailId}/favorite`,
           {
             isFavorited: !isFavorited,
           },
@@ -171,7 +171,7 @@ export default {
     },
     async confirmDelete(cocktailId) {
       try {
-        await axios.delete(`http://localhost:5000/cocktails/${cocktailId}`);
+        await axios.delete(`https://koktelomat.onrender.com/cocktails/${cocktailId}`);
         this.$emit("delete", cocktailId);
         this.cocktailToDelete = null;
       } catch (error) {

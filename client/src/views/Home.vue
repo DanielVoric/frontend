@@ -105,7 +105,7 @@ export default {
 
       try {
         const response = await axios.get(
-          "http://localhost:5000/cocktails/search",
+          "https://koktelomat.onrender.com/cocktails/search",
           {
             params: {
               alcohol: this.selectedAlcohol.join(","),
@@ -125,7 +125,7 @@ export default {
 
     async listAllCocktails() {
       try {
-        const response = await axios.get("http://localhost:5000/cocktails");
+        const response = await axios.get("https://koktelomat.onrender.com/cocktails");
         this.cocktails = response.data;
       } catch (error) {
         console.error("Error fetching all cocktails:", error);
@@ -138,7 +138,7 @@ export default {
     async fetchAllIngredients() {
       try {
         const response = await axios.get(
-          "http://localhost:5000/cocktails/ingredients"
+          "https://koktelomat.onrender.com/cocktails/ingredients"
         );
         this.allAlcohols = response.data.alcohol.sort();
         this.allJuices = response.data.juice.sort();

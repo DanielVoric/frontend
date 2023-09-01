@@ -70,7 +70,7 @@ export default {
       }
       try {
         const response = await axios.post(
-          "http://localhost:5000/auth/register",
+          "https://koktelomat.onrender.com/auth/register",
           {
             username: this.username,
             email: this.email,

@@ -147,9 +147,7 @@ export default {
         const token = localStorage.getItem("authToken");
         const response = await axios.put(
           `https://koktelomat.onrender.com/cocktails/${cocktailId}/favorite`,
-          {
-            isFavorited: !isFavorited,
-          },
+          { isFavorited: !isFavorited }, 
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -157,10 +155,9 @@ export default {
           }
         );
         if (response.status === 200) {
-          const cocktail = this.localCocktails.find(
-            (c) => c._id === cocktailId
-          );
-          cocktail.isFavorited = !isFavorited;
+          console.log("Success", response.data); 
+          this.userFavorites = response.data.favorites || []; 
+          this.updateCocktailsFavoritesStatus();
         } else {
           throw new Error("Failed to toggle favorite");
         }

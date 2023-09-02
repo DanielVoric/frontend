@@ -100,11 +100,11 @@ export default {
     return [...this.localCocktails].sort((a, b) => {
       if (a.isFavorited && !b.isFavorited) return -1;
       if (!a.isFavorited && b.isFavorited) return 1;
-      return 0;
+      
+      return a.name.localeCompare(b.name);
     });
   },
 },
-
 
   created() {
     this.fetchUserFavorites();
@@ -147,7 +147,9 @@ export default {
         const token = localStorage.getItem("authToken");
         const response = await axios.put(
           `https://koktelomat.onrender.com/cocktails/${cocktailId}/favorite`,
-          { isFavorited: !isFavorited }, 
+          {
+            isFavorited: !isFavorited,
+          },
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -155,9 +157,10 @@ export default {
           }
         );
         if (response.status === 200) {
-          console.log("Success", response.data); 
-          this.userFavorites = response.data.favorites || []; 
-          this.updateCocktailsFavoritesStatus();
+          const cocktail = this.localCocktails.find(
+            (c) => c._id === cocktailId
+          );
+          cocktail.isFavorited = !isFavorited;
         } else {
           throw new Error("Failed to toggle favorite");
         }

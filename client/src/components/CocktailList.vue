@@ -100,11 +100,11 @@ export default {
     return [...this.localCocktails].sort((a, b) => {
       if (a.isFavorited && !b.isFavorited) return -1;
       if (!a.isFavorited && b.isFavorited) return 1;
-      
-      return a.name.localeCompare(b.name);
+      return 0;
     });
   },
 },
+
 
   created() {
     this.fetchUserFavorites();

@@ -142,6 +142,7 @@ export default {
       this.localCocktails.sort((a, b) => b.isFavorited - a.isFavorited);
     },
     async toggleFavorite(cocktailId, isFavorited) {
+      console.log("Toggling favorite for", cocktailId); // Debug line
       try {
         const token = localStorage.getItem("authToken");
         const response = await axios.put(

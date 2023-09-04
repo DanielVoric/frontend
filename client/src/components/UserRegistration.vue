@@ -59,7 +59,7 @@ export default {
       confirmPassword: "",
     };
   },
-  mounted() {
+  mounted() { //ne koristim
     this.initRainbowHover();
   },
   methods: {
@@ -88,7 +88,7 @@ export default {
     goToLogin() {
       this.$router.push("/login");
     },
-    initRainbowHover() {
+    initRainbowHover() { //ne koristim...donekle
       document.querySelectorAll(".rainbow-hover").forEach((button) => {
         const rect = button.getBoundingClientRect();
         button.addEventListener("mousemove", (e) => {

@@ -8,7 +8,7 @@
             class="blurred-box alcohol scrollable-box cocktail-list-container2"
           >
             <h2 class="title3">Alcohol:</h2>
-            <div v-for="alcohol in allAlcohols" :key="alcohol">
+            <div v-for="alcohol in allAlcohols" :key="alcohol"> <!--petlja da se stalno stvaraju gumbići za dodat-->
               <input
                 type="checkbox"
                 v-model="selectedAlcohol"
@@ -89,12 +89,12 @@ export default {
       allOthers: [],
     };
   },
-  created() {
+  created() { //inicijalizacija svih mogucih sastojaka
     this.fetchAllIngredients();
   },
   methods: {
-    async searchCocktails() {
-      if (
+    async searchCocktails() { 
+      if ( //provjera dali je ista selectano
         this.selectedAlcohol.length === 0 &&
         this.selectedJuice.length === 0 &&
         this.selectedOther.length === 0
@@ -103,7 +103,7 @@ export default {
         return;
       }
 
-      try {
+      try { //poziva HTTP get req sa tim uri-em
         const response = await axios.get(
           "https://koktelomat.onrender.com/cocktails/search",
           {
@@ -122,7 +122,7 @@ export default {
         );
       }
     },
-
+    //dohvati sve koktele
     async listAllCocktails() {
       try {
         const response = await axios.get("https://koktelomat.onrender.com/cocktails");
@@ -134,7 +134,7 @@ export default {
         );
       }
     },
-
+    //dohvati sve sastojke
     async fetchAllIngredients() {
       try {
         const response = await axios.get(

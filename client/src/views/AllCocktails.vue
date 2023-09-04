@@ -31,7 +31,7 @@ export default {
   created() {
     this.fetchAllCocktails();
   },
-  methods: {
+  methods: { //dohvati sve koktele
     async fetchAllCocktails() {
       try {
         const response = await axios.get("https://koktelomat.onrender.com/cocktails");
@@ -40,7 +40,7 @@ export default {
         console.error("Error fetching all cocktails:", error);
       }
     },
-
+    //refresha kada se brise
     handleCocktailDelete(cocktailId) {
       this.cocktails = this.cocktails.filter(
         (cocktail) => cocktail._id !== cocktailId

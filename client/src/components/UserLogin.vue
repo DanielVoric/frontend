@@ -50,7 +50,7 @@ export default {
     };
   },
   mounted() {
-    this.initRainbowHover();
+    this.initRainbowHover(); //ne koristim...donekle
   },
   methods: {
     async handleLogin() {
@@ -75,7 +75,7 @@ export default {
     goToRegister() {
       this.$router.push("/register");
     },
-    initRainbowHover() {
+    initRainbowHover() { //ne koristim......donekle
       document.querySelectorAll(".rainbow-hover").forEach((button) => {
         const rect = button.getBoundingClientRect();
         button.addEventListener("mousemove", (e) => {

@@ -60,7 +60,7 @@
 
 <script>
 export default {
-  computed: {
+  computed: { //gleda i cita dali postoji token i username
     isAuthenticated() {
       return !!localStorage.getItem("token");
     },
@@ -68,7 +68,7 @@ export default {
       return localStorage.getItem("username");
     },
   },
-  watch: {
+  watch: { //ponovo renderaj ako se ruta promjeni
     $route() {
       this.$forceUpdate();
     },

@@ -1,7 +1,7 @@
 <template>
-  <div class="mt-4">
+  <div class="mt-4"> <!--iterira kroz sortedCocktails i stvara nove kartice sa koktelima -->
     <div
-      v-for="cocktail in sortedCocktails"
+      v-for="cocktail in sortedCocktails" 
       :key="cocktail._id"
       class="card mb-3"
     >
@@ -56,7 +56,8 @@
           </label>
         </div>
 
-        <ul class="list-group list-group-flush">
+        <!--iterira i ispisuje sastojke-->
+        <ul class="list-group list-group-flush"> 
           <li
             v-for="ingredient in cocktail.ingredients.alcohol"
             :key="ingredient"
@@ -87,7 +88,7 @@
 import axios from "axios";
 
 export default {
-  props: ["cocktails"],
+  props: ["cocktails"], //dobiva properties of parent componenta
   data() {
     return {
       localCocktails: [],
@@ -96,7 +97,7 @@ export default {
     };
   },
   computed: {
-  sortedCocktails() {
+  sortedCocktails() { //provjerava jesu li favoritani, te sortira (prvo favoriti pa alphabetical)
     return [...this.localCocktails].sort((a, b) => {
       if (a.isFavorited && !b.isFavorited) return -1;
       if (!a.isFavorited && b.isFavorited) return 1;
@@ -107,9 +108,9 @@ export default {
 },
 
   created() {
-    this.fetchUserFavorites();
+    this.fetchUserFavorites(); //popunjava userFavorites data sa api-a
   },
-  watch: {
+  watch: { //kada se promjeni cocktails, azurira se sa novom vrijednosti u loclacocktails?
     cocktails: {
       immediate: true,
       handler(newValue) {
@@ -118,6 +119,7 @@ export default {
     },
   },
   methods: {
+    //dohvaca favorite
     async fetchUserFavorites() {
       try {
         const token = localStorage.getItem("authToken");
@@ -135,16 +137,17 @@ export default {
         console.error("Failed to fetch user favorites:", error);
       }
     },
+    //azurira favorite, ovisno o odabiru
     updateCocktailsFavoritesStatus() {
       this.localCocktails.forEach((cocktail) => {
         cocktail.isFavorited = this.userFavorites.includes(cocktail._id);
       });
       this.localCocktails.sort((a, b) => b.isFavorited - a.isFavorited);
     },
-    async toggleFavorite(cocktailId, isFavorited) {
+    async toggleFavorite(cocktailId, isFavorited) { //add/remove favorite
       console.log("Toggling favorite for", cocktailId); // Debug line
       try {
-        const token = localStorage.getItem("authToken");
+        const token = localStorage.getItem("authToken"); //provjerava koji je user (po tokenu)
         const response = await axios.put(
           `https://koktelomat.onrender.com/cocktails/${cocktailId}/favorite`,
           {
